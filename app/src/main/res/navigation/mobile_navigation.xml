@@ -29,4 +29,10 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_communicate" />
 
+    <fragment
+        android:id="@+id/navigation_personal"
+        android:name="com.example.swebnb.ui.personal.PersonalFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_communicate" />
+
 </navigation>
