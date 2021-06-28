@@ -1,6 +1,7 @@
 package com.example.swebnb.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.SearchManager;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,18 +25,32 @@ import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.swebnb.MainActivity;
 import com.example.swebnb.R;
+import com.example.swebnb.ViewPagerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment<ViewPagerAdapter> extends Fragment {
+   //image view
+    ViewPager mViewPager;
+
+    // images array
+    int[] images = {R.drawable.ic_dashboard_black_24dp, R.drawable.ic_home_black_24dp,R.drawable.ic_notifications_black_24dp};
+
+    // Creating Object of ViewPagerAdapter
+//    ViewPagerAdapter mViewPagerAdapter = (ViewPagerAdapter) new com.example.swebnb.ViewPagerAdapter(getContext(), images);
+
     // List View object
     ListView listView;
 
     // Define array adapter for ListView
     ArrayAdapter<String> adapter;
+
 
     // Define array List for List View data
     ArrayList<String> mylist;
@@ -58,13 +75,23 @@ public class HomeFragment extends Fragment {
 
         // Add items to Array List
         mylist = new ArrayList<>();
-        mylist.add("Kej");
-        mylist.add("GestHouse");
-        mylist.add("kyb");
+//        mylist.add("Kej");
+//        mylist.add("GestHouse");
+//        mylist.add("kyb");
         // Set adapter to ListView
         adapter
                 = new ArrayAdapter<String>(getContext().getApplicationContext(), android.R.layout.simple_list_item_1, mylist);
         listView.setAdapter(adapter);
+
+//        List<String> items = new ArrayList<String>();
+//        items.add("string");
+//        items.add("string");
+//        items.add("string");
+        // Set adapter to ListView
+        // Initializing the ViewPager Object
+        mViewPager = (ViewPager)root.findViewById(R.id.viewPagerMain);
+        ViewPagerAdapter mViewPagerAdapter = (ViewPagerAdapter) new com.example.swebnb.ViewPagerAdapter(getContext(), images);
+        mViewPager.setAdapter((PagerAdapter) mViewPagerAdapter);
 
         return root;
     }
